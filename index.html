@@ -1,0 +1,29 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="css/source-sans-pro.js"></script>
+	<script src="lib/angular.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class='header'><h1>Tráfico GDL</h1></div>
+		<div ng-app="" ng-controller="listadoNoticias">
+			<ul>
+				<li ng-repeat="noticia in noticias">
+					<div class="id">{{noticia.ID}}</div><blockquote>{{noticia.Titulo}}</blockquote>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script src="phonegap.js"></script>
+	<script>
+		function listadoNoticias($scope,$http){
+			$http.get("http://viesagroup.com/proyectos/getTitulos.php")
+			.success(function(response){$scope.noticias = response;});
+		}
+	</script>
+</body>
+</html>
